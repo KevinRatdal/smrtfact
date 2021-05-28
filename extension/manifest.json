@@ -1,0 +1,39 @@
+{
+    "manifest_version": 2,
+    "name": "smrtfact",
+    "description": "a Smart fact checking extension for google chrome",
+    "version": "2.0",
+    "author": "STG0002664",
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';",
+    "browser_action": {
+        "default_icon": "img/icon.png",
+        "default_popup": "popup.html",
+        "default_title": "smrtfact"
+    },
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*.example.org/*",
+                "https://*/*",
+                "http://*/*"
+            ],
+            "run_at": "document_idle",
+            "js": [
+                "contentScript.js",
+                "generators.js"
+            ]
+        }
+    ],
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "storage",
+        "contextMenus"
+    ], 
+    "web_accessible_resources": ["img/*.png","img/*.gif", "js/bootstrap.bundle.min.js", "css/bootstrap.min.css"]
+}
